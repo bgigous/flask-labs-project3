@@ -14,6 +14,7 @@ docs/_build
 dist
 results
 venv
+env
 
 # editor (vim + plugin)
 .ropeproject

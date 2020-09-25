@@ -17,7 +17,7 @@ def test():
         sys.exit(1)
 
 
-@app.cli.command()
+@app.cli.command('fill_db')
 def fill_db():
     """Fills database with random data.
     By default 10 users, 40 todolists and 160 todos.
