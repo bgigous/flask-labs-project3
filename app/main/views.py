@@ -56,3 +56,18 @@ def add_todolist():
         todolist = TodoList(form.title.data, _get_user()).save()
         return redirect(url_for("main.todolist", id=todolist.id))
     return redirect(url_for("main.index"))
+
+
+@main.route("/todo/<int:todo_id>/", methods=["GET", "PUT"])
+def update_todo_status(todo_id):
+    todo = Todo.query.get_or_404(todo_id)
+    if request.method == "GET":
+        return todo.to_dict()
+    try:
+        if request.json.get("is_finished"):
+            todo.finished()
+        else:
+            todo.reopen()
+    except:
+        abort(400)
+    return todo.to_dict()
